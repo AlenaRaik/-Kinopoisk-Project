@@ -1,0 +1,86 @@
+.App {
+    --background-primary-color: rgb(45, 44, 44);
+    --background-accent-color: #cccccc;
+    --text-primary-color: white;
+    --text-secondary-color: gray;
+    --border-primary-color: gray;
+    --border-accent-color: #ffaaff;
+    --like-secondery-color: red;
+    --text-title-color: #a9a7a7;
+    --menu-primary-color: rgb(85, 85, 85);
+    --menu-button-color: #a7a7a7;
+    --day-night-color:  #6c6969;
+  
+  &.light {
+    /* --background-primary-color: rgb(45, 44, 44);
+    --background-accent-color: #cccccc;
+    --text-primary-color: white;
+    --text-secondary-color: gray;
+    --border-primary-color: gray;
+    --border-accent-color: #ffaaff;
+    --like-secondery-color: red;
+    --text-title-color: #a9a7a7;
+    --menu-primary-color: rgb(85, 85, 85);
+    --menu-button-color: #a7a7a7;
+    --day-night-color:  #6c6969; */
+    --background-primary-color: #eeeeeeee;
+    --background-accent-color: #cccccc;
+    --text-primary-color: black;
+    --text-secondary-color: gray;
+    --border-primary-color: gray;
+    --border-accent-color: green;
+    --like-secondery-color: black;
+    --text-title-color: #333;
+    --menu-primary-color: #ffffff;
+    --menu-button-color: #ffffff;
+    --day-night-color:  #a7a7a7;
+  }
+
+  & a {
+    all: unset;
+    color: var(--text-primary-color);
+    cursor: pointer;
+  }
+
+  
+}
+
+/* .App {
+  text-align: center;
+}
+
+.body {
+all:unset;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+::placeholder {
+  color: #c4e9ff;
+  opacity: 1; 
+} 
+
+span {
+  margin: auto;
+}
+p{
+  margin: 0;
+  color: var(--text-primary-color);
+}
+li {
+  padding: 0 40px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  input:disabled+label {
+    cursor: auto;
+    color: var(--day-night-color);
+  } */
