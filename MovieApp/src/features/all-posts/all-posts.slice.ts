@@ -9,7 +9,7 @@ const AllPostsSlice = createSlice({
       totalPages: 0,
       items: [],
     } as KinopoinskAllUnofficial,
-
+    setCards: {} as KinopoinskProps,
     currentPage: 2,
     currentScroll: 1300,
     allPostsIsLoading: false,
@@ -26,6 +26,17 @@ const AllPostsSlice = createSlice({
     getAllPostsFailure(state) {
       state.allPostsIsLoading = false;
     },
+    // setCards(state, action: { payload: number }) {
+    //   state.allPostsIsLoading = true;
+    //   state.allPosts.total = action.payload;
+    // },
+    // setCardsSuccess(
+    //   state,
+    //   action: { payload: KinopoinskProps }
+    // ) {
+    //   state.allPostsIsLoading = false;
+    //   state.setCards = action.payload;
+    // },
   },
 });
 
@@ -34,6 +45,8 @@ export const {
     getAllPosts,
     getAllPostsSuccess,
     getAllPostsFailure,
+    // setCards,
+    // setCardsSuccess
   },
   reducer: AllPostsReducer,
 } = AllPostsSlice;

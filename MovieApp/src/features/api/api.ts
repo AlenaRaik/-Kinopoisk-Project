@@ -26,3 +26,23 @@ export const kinopoiskApi = {
       });
     },
   };
+
+  export const kinopoiskBigApi = {
+      getSelectedAllPosts: (
+        kinopoiskId: number
+      ): Promise<KinopoinskProps> => {
+        return fetch(
+          `https://api.kinopoisk.dev/v1.4/movie/${kinopoiskId}`, {
+          method: 'GET',
+          headers: {
+            'accept': 'application/json',
+            'X-API-KEY': X_API_KEY,
+          },
+        }).then((response) => {
+          if (!response.ok) {
+            throw new Error('SERVER_ERROR');
+          }
+          return response.json();
+        });
+      },
+  };

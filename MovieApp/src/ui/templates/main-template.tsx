@@ -60,7 +60,7 @@ const TitleContainer = styled.div`
 `;
 
 const BodyContainer = styled.div`
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr); */
 `;

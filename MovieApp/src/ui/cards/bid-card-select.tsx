@@ -1,74 +1,46 @@
-import {
-  faBookmark,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { styled } from 'styled-components';
-import { CardProps } from './card-props';
-import { LikeDislike } from '#features/like-dislike/like-dislike';
 
-export type BigCardSelectProps = {
-  value: CardProps;
-  homeLink: React.ReactNode;
+import { styled } from 'styled-components';
+
+type Props = {
+  description: React.ReactNode;
+  img: React.ReactNode;
+  genres:React.ReactNode;
+  name:React.ReactNode;
+  year:React.ReactNode;
 };
 
-export const BigCardSelect: React.FC<BigCardSelectProps> = (
-  props: BigCardSelectProps
-) => {
+export const BigCardSelect: React.FC<Props> = ({ description, img, genres, name, year }) => {
   return (
     <div>
       <Card>
-        <CardData>
-          <TextData>
-          {props.homeLink}
-            <HeaderDate>{props.value.date}</HeaderDate>
-            <Header>{props.value.title}</Header>
-            <ImageCard>
-              <img src={props.value.image} alt="#"></img>
-            </ImageCard>
-            <p>{props.value.text}</p>
-          </TextData>
-        </CardData>
-        <CommandString>
-        <LikeDislike postId={props.value.id}></LikeDislike>
-          <WrapperOther>
-            <ButtonBookmark>
-              <FontAwesomeIcon icon={faBookmark} />
-              <ButtonText>Add to favorites</ButtonText>
-            </ButtonBookmark>
-          </WrapperOther>
-        </CommandString>
+
+            <ImageCard>{img}</ImageCard>
+            <DataWrapper>
+            <GenresName>{genres}</GenresName>
+            <FilmName>{name}:{year}</FilmName>
+            <HeaderDate>{description}</HeaderDate>
+            </DataWrapper>
+
       </Card>
     </div>
   );
 };
 
-const Header = styled.h2`
-  color: var(--text-primary-color);;
-`;
-
-const WrapperOther = styled.div``;
 const Card = styled.div`
-  width: 70%;
-  margin: auto;
-`;
-const CommandString = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;
 const ImageCard = styled.div`
-  width: 400px;
-  height: 400px;
-  margin: auto;
-  margin-bottom: 20px;
+  width: 300px;
+  height: 300px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 `;
-const CardData = styled.div``;
 
-const TextData = styled.div`
-  text-align: left;
-  color: #989aa8;
-  padding: 1% 0;
-`;
+
+const GenresName = styled.p``
 const ButtonBookmark = styled.button`
   width: 150px;
   height: 2rem;
@@ -82,8 +54,12 @@ const ButtonBookmark = styled.button`
   }
 `;
 
-const ButtonText = styled.p``;
-
 const HeaderDate = styled.p`
-  color: gray;
+  
 `;
+const FilmName = styled.p`
+  
+`;
+const DataWrapper = styled.div`
+color: white;
+width: 90%;`

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { SignUp } from './pages/sign-up';
-import { SelectedPost } from './pages/selected-post';
+import { SelectedPost } from './features/selected-posts/selected-post';
 import { SignIn } from './pages/sign-in';
 import { Blog } from '#features/all-posts/all-posts';
 

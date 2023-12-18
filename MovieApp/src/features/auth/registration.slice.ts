@@ -10,6 +10,7 @@ initialState: {
 reducers: {
     register(state, action: { payload: RegistrationPayload}) {
         state.isInProgress = true;
+        
     },
     registerSucces(state) {
         state.isInProgress = false;

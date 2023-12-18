@@ -2,15 +2,17 @@ import { MainTemplate } from '#ui/templates/main-template';
 import { Menu } from '#ui/header/menu';
 
 
-import { useAppDispatch, useAppSelector } from '#hooks';
+import { useAppDispatch, useAppSelector, useAuth } from '#hooks';
 import {
-  getAllPosts,
+  getAllPosts
 } from '#features/all-posts/all-posts.slice';
 import Search from '#features/search/search';
 import { FilmCard } from '#ui/cards/films-card';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { MenuNav } from '#ui/header/menuNav';
+import { setCards } from '#features/selected-posts/selected-posts.slice';
+import { FilmCardWrapper } from '#ui/cards/big-card-wrapper';
 
 export const Blog: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,8 +29,9 @@ export const Blog: React.FC = () => {
     <MainTemplate
       header={<Menu />}
       title={<Search />}
-      body={allPosts.items?.map((item, index) => (
-        <Link to={`/${item.kinopoiskId}`} key={index}>
+      body={<FilmCardWrapper data={
+        allPosts.items?.map((item, index) => (
+        <Link to={`/posts/:${item.kinopoiskId}`} key={index}>
           <FilmCard
             key={index}
             id={item.kinopoiskId}
@@ -40,11 +43,11 @@ export const Blog: React.FC = () => {
             country={item.countries.map((element) => ' ' + element.country)}
             img={<img src={item.posterUrl} alt="movie" />}
             onClick={() => {
-              // dispatch(setCards(item.kinopoiskId));
+            dispatch(setCards(item.kinopoiskId));
             }}
           ></FilmCard>
         </Link>
-      ))}
+      ))} />}
     />
     </PageAllPostsWraper>
   );

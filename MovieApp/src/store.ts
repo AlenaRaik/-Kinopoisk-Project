@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
+import { SelectedPostsReducer } from '#features/selected-posts/selected-posts.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -20,6 +21,7 @@ export const store = configureStore({
     allPosts: AllPostsReducer,
     burgerMenu: burgerOpenReducer,
     tabs: tabsSliceReducer,
+    selectedMovie: SelectedPostsReducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(middleware),

@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '#hooks';
 import { styled } from 'styled-components';
 import { register } from '#features/auth/registration.slice';
 import { useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { setUser } from '#features/sign-in-form/sign-in-form.slice';
 
 export const SignUpForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +26,23 @@ export const SignUpForm: React.FC = () => {
 
   const [password, setPassword] = useState('');
   const [confirmedPassword, setConfirmedPassword] = useState('');
+
+
+  const handleRegister = () => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(({ user }) => {
+      dispatch(
+        setUser({
+          nameEmail: user.email,
+          id: user.uid,
+          token: user.refreshToken,
+        })
+      );
+      navigate('/');
+    })
+    .catch(console.error);
+  };
 
   return (
     <FormSignUp>
@@ -54,7 +73,8 @@ export const SignUpForm: React.FC = () => {
           setConfirmedPassword(currentTarget.value)
         }
       />
-      <Button variant="primary" onClick={() => dispatch(register({username:name, password}))}>
+      {/* <Button variant="primary" onClick={() => dispatch(register({username:name, password}))}> */}
+      <Button variant="primary" onClick={() => handleRegister()}>
         Sign Up
       </Button>
     </FormSignUp>

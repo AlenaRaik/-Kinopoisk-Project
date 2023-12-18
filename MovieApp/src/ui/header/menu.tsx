@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '#hooks';
 
-const nameUser: string = 'Artem Malkin';
+const nameUser: string = 'YES';
+const nameUser2: string = 'NO';
 
 const useOnClickOutside = (
   ref: RefObject<HTMLDivElement>,
@@ -27,14 +29,13 @@ const useOnClickOutside = (
   }, [ref, closeMenu]);
 };
 
-function NameUser(props: { name: string }) {
+function NameUser(props: { name: string | null}) {
   return <span>{props.name}</span>;
 }
-function InitUser(props: { name: string }) {
+function InitUser(props: { name: string | null}) {
   return (
     <span>
-      {props.name
-        .split(' ', 2)
+      {props.name?.split(' ', 2)
         .map((word) => word[0])
         .join('')
         .toUpperCase()}
@@ -49,6 +50,7 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
   const node = useRef<HTMLDivElement>(null);
   const close = () => setOpen(false);
 
+  const{isAuth, nameEmail} = useAuth();
   useOnClickOutside(node, () => setOpen(false));
 
   return (
@@ -62,11 +64,11 @@ export const Menu: React.FC<MenuProps> = (props: MenuProps) => {
         </Search>
         <User>
           <StyledButton>
-            <InitUser name={nameUser} />
+          {isAuth?(<InitUser name={nameEmail} />):(<InitUser name='' />)}
           </StyledButton>
           <StyledLink>
           <Link to={`/sign-in`}>
-          <NameUser name={nameUser} />
+          {isAuth?(<NameUser name={nameEmail} />):(<NameUser name='Войти' />)}
           </Link>
           </StyledLink>
         </User>
