@@ -11,7 +11,6 @@ const AllPostsSlice = createSlice({
     } as KinopoinskAllUnofficial,
     setCards: {} as KinopoinskProps,
     currentPage: 2,
-    currentScroll: 1300,
     allPostsIsLoading: false,
   },
   reducers: {

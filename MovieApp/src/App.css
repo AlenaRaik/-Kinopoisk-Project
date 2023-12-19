@@ -12,17 +12,7 @@
     --day-night-color:  #6c6969;
   
   &.light {
-    /* --background-primary-color: rgb(45, 44, 44);
-    --background-accent-color: #cccccc;
-    --text-primary-color: white;
-    --text-secondary-color: gray;
-    --border-primary-color: gray;
-    --border-accent-color: #ffaaff;
-    --like-secondery-color: red;
-    --text-title-color: #a9a7a7;
-    --menu-primary-color: rgb(85, 85, 85);
-    --menu-button-color: #a7a7a7;
-    --day-night-color:  #6c6969; */
+
     --background-primary-color: #eeeeeeee;
     --background-accent-color: #cccccc;
     --text-primary-color: black;

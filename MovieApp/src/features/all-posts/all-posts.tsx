@@ -2,11 +2,10 @@ import { MainTemplate } from '#ui/templates/main-template';
 import { Menu } from '#ui/header/menu';
 
 
-import { useAppDispatch, useAppSelector, useAuth } from '#hooks';
+import { useAppDispatch, useAppSelector } from '#hooks';
 import {
   getAllPosts
 } from '#features/all-posts/all-posts.slice';
-import Search from '#features/search/search';
 import { FilmCard } from '#ui/cards/films-card';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -22,14 +21,40 @@ export const Blog: React.FC = () => {
     dispatch(getAllPosts({ page: 1 }));
   }
 
+  const searchedMovies = useAppSelector((state) => state.search.searchedPosts);
+  const filterArr = useAppSelector((state) => state.filter.filtersFilm);
+
   return (
     <PageAllPostsWraper>
       <MenuNav />
       
     <MainTemplate
       header={<Menu />}
-      title={<Search />}
-      body={<FilmCardWrapper data={
+      // title={<Search />}
+      body={
+      searchedMovies.films.length===0?(
+      <>   
+      {filterArr.items.length > 0 ?
+          (<FilmCardWrapper data={
+            filterArr.items?.map((item, index) => (
+          <Link to={`/posts/:${item.kinopoiskId}`} key={index}>
+            <FilmCard
+              key={index}
+              id={item.kinopoiskId}
+              title={item.nameRu}
+              titleOriginal={item.nameEn}
+              genre={item.genres.map((element) => ' ' + element.genre)}
+              rating={item.ratingKinopoisk}
+              year={item.year}
+              country={item.countries.map((element) => ' ' + element.country)}
+              img={<img src={item.posterUrl} alt="movie" />}
+              onClick={() => {
+              dispatch(setCards(item.kinopoiskId));
+              }}
+            ></FilmCard>
+          </Link>
+        ))} />):(
+          <FilmCardWrapper data={
         allPosts.items?.map((item, index) => (
         <Link to={`/posts/:${item.kinopoiskId}`} key={index}>
           <FilmCard
@@ -37,18 +62,44 @@ export const Blog: React.FC = () => {
             id={item.kinopoiskId}
             title={item.nameRu}
             titleOriginal={item.nameOriginal}
-            genre={item.genres.map((element) => ' ' + element.genre)}
+            genre={item.genres?.map((element) => ' ' + element.genre)}
             rating={item.ratingKinopoisk}
             year={item.year}
-            country={item.countries.map((element) => ' ' + element.country)}
+            country={item.countries?.map((element) => ' ' + element.country)}
             img={<img src={item.posterUrl} alt="movie" />}
             onClick={() => {
             dispatch(setCards(item.kinopoiskId));
             }}
           ></FilmCard>
         </Link>
-      ))} />}
+      ))} />
+        )
+            }
+        </>
+      ) : (
+        <FilmCardWrapper data={
+          searchedMovies.films?.map((item, index) => (
+          <Link to={`/posts/:${item.filmId}`} key={index}>
+            <FilmCard
+              key={index}
+              id={item.filmId}
+              title={item.nameRu}
+              titleOriginal={item.nameEn}
+              genre={item.genres.map((element) => ' ' + element.genre)}
+              rating={item.rating}
+              year={item.year}
+              country={item.countries.map((element) => ' ' + element.country)}
+              img={<img src={item.posterUrl} alt="movie" />}
+              onClick={() => {
+              dispatch(setCards(item.filmId));
+              }}
+            ></FilmCard>
+          </Link>
+        ))} />
+      )
+    }
     />
+    
     </PageAllPostsWraper>
   );
 };

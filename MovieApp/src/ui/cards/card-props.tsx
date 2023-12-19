@@ -511,6 +511,7 @@ export interface CardProps {
   export type KinopoinskAllUnofficial = {
     total: number;
     totalPages: number;
+    
     items: Array<{
       kinopoiskId: number;
       imdbId: string;
@@ -560,4 +561,112 @@ export type UserProps = {
   nameEmail: string | null;
   token: string;
   id: string;
+};
+
+export type FilterSmall = {
+  order: string;
+  keyword: string;
+  ratingFrom: number;
+  ratingTo: number;
+  yearFrom: number;
+  yearTo: number;
+  page: number;
+};
+
+export type FilterBig = {
+  total: number;
+  totalPages: number;
+  items: Array<{
+    kinopoiskId: number;
+    imdbId: string;
+    nameRu: string;
+    nameEn: string;
+    nameOriginal: string;
+    countries: [
+      {
+        country: string;
+      }
+    ];
+    genres: [
+      {
+        genre: string;
+      }
+    ];
+    ratingKinopoisk: number;
+    ratingImdb: number;
+    year: number;
+    type: string;
+    posterUrl: string;
+    posterUrlPreview: string;
+  }>;
+};
+
+export type SearchBig = {
+  keyword: string;
+  pagesCount: number;
+  films: Array<{
+    filmId: number;
+    nameRu: string;
+    nameEn: string;
+    type: string;
+    year: string;
+    description: string;
+    filmLength: string;
+    countries: [
+      {
+        country: string;
+      },
+      {
+        country: string;
+      }
+    ];
+    genres: [
+      {
+        genre: string;
+      },
+      {
+        genre: string;
+      },
+      {
+        genre: string;
+      }
+    ];
+    rating: string;
+    ratingVoteCount: number;
+    posterUrl: string;
+    posterUrlPreview: string;
+  }>;
+  searchFilmsCountResult: number;
+};
+
+export type SearchSmall = {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  nameOriginal:string;
+  type: string;
+  year: string;
+  description: string;
+  filmLength: string;
+  slogan: string;
+  countries: [
+    {
+      country: string;
+    }
+  ];
+  genres: [
+    {
+      genre: string;
+    }
+  ];
+  rating: string;
+  ratingKinopoisk: number;
+  ratingVoteCount: number;
+  posterUrl: string;
+  posterUrlPreview: string;
+};
+
+export type SearchRequest = {
+  search: string;
+  page: number;
 };

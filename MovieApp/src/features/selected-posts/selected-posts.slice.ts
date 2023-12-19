@@ -1,10 +1,10 @@
-import { KinopoinskAllUnofficial, KinopoinskProps } from '#ui/cards/card-props';
+import { KinopoinskAllUnofficial, KinopoinskProps, SearchSmall } from '#ui/cards/card-props';
 import { createSlice } from '@reduxjs/toolkit';
 
 const SelectedPostsSlice = createSlice({
   name: 'SelectedPosts',
   initialState: {
-    setCards: {} as KinopoinskProps,
+    setCards: {} as SearchSmall,
     currentPage: 2,
     currentScroll: 1300,
     allPostsIsLoading: false,
@@ -18,7 +18,7 @@ const SelectedPostsSlice = createSlice({
     },
     setCardsSuccess(
       state,
-      action: { payload: KinopoinskProps }
+      action: { payload: SearchSmall }
     ) {
       state.allPostsIsLoading = false;
       state.setCards = action.payload;

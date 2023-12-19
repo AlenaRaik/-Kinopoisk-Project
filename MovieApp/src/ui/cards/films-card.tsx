@@ -6,7 +6,7 @@ type Props = {
   id: number;
   title: React.ReactNode;
   titleOriginal: React.ReactNode;
-  rating: number;
+  rating: number|string;
   genre: React.ReactNode;
   img: React.ReactNode;
   year: React.ReactNode;

@@ -9,6 +9,10 @@ import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './sagas';
 import { registrationReducer } from '#features/auth/registration.slice';
 import { SelectedPostsReducer } from '#features/selected-posts/selected-posts.slice';
+import { FilterReducer } from '#features/filter/filter.slice';
+import { searchReducer } from '#features/search/search.slice';
+import { TrendsReducer } from '#features/trends/trends.slice';
+import { RecommendationReducer } from '#features/recomend/recomend.slice';
 
 let sagaMiddleware = createSagaMiddleware();
 const middleware = [sagaMiddleware];
@@ -22,6 +26,10 @@ export const store = configureStore({
     burgerMenu: burgerOpenReducer,
     tabs: tabsSliceReducer,
     selectedMovie: SelectedPostsReducer,
+    search: searchReducer,
+    filter: FilterReducer,
+    trendsPosts: TrendsReducer,
+    recommendation: RecommendationReducer,
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(middleware),
